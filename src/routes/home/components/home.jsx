@@ -13,7 +13,6 @@ class HomeView extends Component {
 
 
     componentDidMount() {
-        console.log(this.props)
         this.props.loadImages()
     }
 
@@ -21,14 +20,12 @@ class HomeView extends Component {
     render() {
         const result = this.props.images.result;
 
-        console.log(result)
-
-        // const { result: data } = this.props.images
         return (
             <React.Fragment>
                 <h1>Images</h1>
-                
-                {/* {this.props.images.result.map((image => (<div><img src={image.link} alt={image.title}/></div>)))} */}
+                {result && result.map((image) => (
+                    <div style={{display:'inline-block'}} key={image.id}><img src={image.link} width="100" height="100"/></div>
+                ))}                
             </React.Fragment>
         )
     }
