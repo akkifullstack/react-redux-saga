@@ -5,17 +5,14 @@ import createSagaMiddleware from 'redux-saga';
 import appReducers from '../redux/reducers';
 import rootSaga from '../redux/saga'
 
-console.log(appReducers)
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(appReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 
 sagaMiddleware.run(rootSaga);
 
 export default store;
-
-export { persistor };

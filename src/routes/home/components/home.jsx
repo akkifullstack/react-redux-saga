@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,20 +7,28 @@ import { loadImages } from '../../../redux/actions/home';
 
 
 class HomeView extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
 
-    componentDidMount = () =>{
+    componentDidMount() {
+        console.log(this.props)
         this.props.loadImages()
     }
 
 
-    render(){
+    render() {
+        const result = this.props.images.result;
+
+        console.log(result)
+
+        // const { result: data } = this.props.images
         return (
             <React.Fragment>
                 <h1>Images</h1>
+                
+                {/* {this.props.images.result.map((image => (<div><img src={image.link} alt={image.title}/></div>)))} */}
             </React.Fragment>
         )
     }
@@ -36,10 +44,13 @@ HomeView.propTypes = {
 
 
 const mapStateToProps = (state) => {
- return {  
-     images: state.home.images
- }
+    return {
+        images: state.home.images
+    }
 }
 
+const mapDispatchToProps = dispatch => ({
+    loadImages: () => dispatch(loadImages()),
+})
 
-export default connect(mapStateToProps, {loadImages})(HomeView);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
