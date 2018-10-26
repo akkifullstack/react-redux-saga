@@ -19,7 +19,7 @@ const Images = new Schema ({
     }
 
 
-},{timestamps});
+},{timestamps:true});
 
 
 

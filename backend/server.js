@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const dbConfig = require('./config/db');
+const iroutes = require('./routes/images');
 
 let app = express();
 
@@ -17,7 +18,7 @@ app.use((req, res, next)=>{
     next();
 })
 
-
+app.use('/api/', iroutes)
 
 app.use(function(req, res, next){
 	console.log(req.method, req.url)

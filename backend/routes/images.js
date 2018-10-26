@@ -6,13 +6,8 @@ const ImageController = require('../controller/imageControllers');
 
 
 router
-    .route('/')
-    .post(multer().array(), ImageController);
-
-
-
-
-
+    .route('/new')
+    .post(multer().array(), ImageController.addImage);
 
 
 
