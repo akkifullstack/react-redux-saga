@@ -24,7 +24,7 @@ export default class ApiService {
 
 		body = body || undefined;
 
-		const request = new Request(/*Config.API+*/  url, {
+		const request = new Request(Config.API +  url, {
 			method,
 			body,
 			headers

@@ -1,5 +1,5 @@
 const development = {
-	API: 'https://api.test.carsandjobs.com/',
+	API: 'http://localhost:4001/',
 	MEDIA_URL: 'https://d22oes0c9mfxez.cloudfront.net',
 	PAYPAL_ENV: 'sandbox'
 };
