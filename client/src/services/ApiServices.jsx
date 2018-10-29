@@ -4,41 +4,46 @@ import ApiError from './ApiError';
 export default class ApiService {
 	constructor(service, token = '') {
 		this.token = token;
+		// console.log(Object.entries(service), 'service')
+		for (const [key, value] of Object.entries(service)) {
 
-		for(const [key, value] of Object.entries(service)) {
-			if(typeof value === 'function') {
-				this[key] = (...args) => service[key](this, ...args);
+			if (typeof value === 'function') {
+
+				this[key] = (...args) => {
+					console.log(...args, 'args');
+					return service[key](this, ...args);
+				}
 			}
 		}
 	}
 
 	async fetch({ method = 'GET', url, body, headers = {} }) {
 		const token = this.token;
-		if(token)
+		if (token)
 			headers['Authorization'] = `CNJ ${token}`;
 
-		if(!(body instanceof FormData)) {
+		if (!(body instanceof FormData)) {
 			headers['Content-Type'] = 'application/json';
 			body = body ? JSON.stringify(body) : undefined;
 		}
 
 		body = body || undefined;
 
-		const request = new Request(Config.API +  url, {
+		const request = new Request(/*Config.API +*/ url, {
 			method,
 			body,
 			headers
 		});
-	
+
 		let response;
 		try {
 			response = await fetch(request);
 		}
-		catch(error) {
+		catch (error) {
 			throw new ApiError(error.message);
 		}
-	
-		if(response.ok)
+
+		if (response.ok)
 			return await response.json();
 		else {
 			let message;
@@ -47,7 +52,7 @@ export default class ApiService {
 				message = json ? json.message : null;
 			}
 			/* eslint-disable no-empty */
-			catch(error) {}
+			catch (error) { }
 			/* eslint-enable no-empty */
 
 			throw new ApiError(message, response.status, token);

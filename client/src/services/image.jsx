@@ -1,5 +1,6 @@
-export const submitImageForm = (service,  image) => service.fetch({
+export const submitImageForm = (service, image) => service.fetch({
     method: 'POST',
     url: 'api/new',
-    body:image
+    body: image
 })
+// export const submitImageForm = (service, image) => console.log(image, 'image');

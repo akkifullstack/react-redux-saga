@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ImagePostForm from './postimage';
 import { submitPostForm } from '../../../redux/actions/image';
@@ -9,15 +9,16 @@ import { submitPostForm } from '../../../redux/actions/image';
 
 
 class ImageFormView extends Component {
-    
+
     handleSubmit = values => {
+        console.log(values, 'value')
         this.props.submitPostForm(values);
     }
-    
-    render(){
-        return(
+
+    render() {
+        return (
             <React.Fragment>
-                <ImagePostForm 
+                <ImagePostForm
                     onSubmit={this.handleSubmit}
                 />
             </React.Fragment>
@@ -33,7 +34,7 @@ const mapStateToProps = state => ({
 
 
 const mapdispatchToProps = dispatch => ({
-    submitPostForm:() => dispatch(submitPostForm())
+    submitPostForm: (values) => dispatch(submitPostForm(values))
 })
 
 export default connect(mapStateToProps, mapdispatchToProps)(ImageFormView)

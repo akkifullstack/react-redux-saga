@@ -24,8 +24,8 @@ class HomeView extends Component {
             <React.Fragment>
                 <h1>Images</h1>
                 {result && result.map((image) => (
-                    <div style={{display:'inline-block'}} key={image.id}><img src={image.link} width="100" height="100"/></div>
-                ))}                
+                    <div style={{ display: 'inline-block' }} key={image.id}><img src={image.url} width="100" height="100" /></div>
+                ))}
             </React.Fragment>
         )
     }
